@@ -1,0 +1,58 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: api-tf-remessa
+  description: Aqui você descreve tudo sobre a sua aplicação
+  annotations:
+    backstage.io/kubernetes-namespace: autbank-tf
+    backstage.io/kubernetes-label-selector: 'app.name=api-tf-remessa'
+    sonarqube.org/project-key: br.com.autbank:api-tf-remessa
+  tags:
+    - java
+  links:
+    - url: http://api-tf-remessa.tf.dev.mesh.autbank.net
+      title: Istio HTTP
+    - url: https://api-tf-remessa.tf.dev.mesh.autbank.net
+      title: Istio HTTPs
+    - url: http://grafana.dev.autbank.net/d/pyHxqcM4z/arch-stats?orgId=1&refresh=30s&var-namespace=autbank-tf&var-job=api-tf-remessa
+      title: Grafana Monitoring
+      type: dashboard
+    - url: https://rancher.autbank.net/dashboard/c/local/explorer/apps.deployment/autbank-tf/api-tf-remessa#pods
+      title: Rancher
+      type: dashboard
+    - url: http://docs.dev.autbank.net/arch-java/
+      title: Framework Documentation
+      type: documentation
+    - url: http://jaeger.dev.autbank.net/search?service=api-tf-remessa&limit=20
+      title: Jaeger
+spec:
+  type: service
+  owner: autbank-tf
+  lifecycle: stable
+  system: autbank-tf
+  providesApis:
+    - api-tf-remessa-openapi
+  
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-tf-remessa-openapi
+  description: Swagger documentation for api-tf-remessa service.
+  tags:
+    - openapi3
+spec:
+  type: openapi
+  owner: autbank-tf
+  system: autbank-tf
+  lifecycle: stable
+  definition:
+    $text: ./src/main/resources/swagger.yaml
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: autbank-tf
+spec:
+  owner: autbank-tf

@@ -1,0 +1,12 @@
+appName: api-tf-remessa
+archetype: micronaut
+
+image:
+  repository: registry.autbank.net/tf/api-tf-remessa
+
+env: |
+  - name: JAVA_OPTS
+    value: "-Xms64m"
+
+extensions:
+  opentelemetry:

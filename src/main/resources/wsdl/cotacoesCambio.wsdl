@@ -1,0 +1,58 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://autbank.com.br/treinamento-framework/servidor-cotacoes-de-cambio"
+                  targetNamespace="http://autbank.com.br/treinamento-framework/servidor-cotacoes-de-cambio">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://autbank.com.br/treinamento-framework/servidor-cotacoes-de-cambio">
+            <xs:element name="getTaxaCambioRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="moeda" type="tns:moedas"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTaxaCambioResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="taxaCambio" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:simpleType name="moedas">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="USDBRL"/>
+                    <xs:enumeration value="EURBRL"/>
+                    <xs:enumeration value="GBPBRL"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getTaxaCambioRequest">
+        <wsdl:part element="tns:getTaxaCambioRequest" name="getTaxaCambioRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getTaxaCambioResponse">
+        <wsdl:part element="tns:getTaxaCambioResponse" name="getTaxaCambioResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CotacoesCambioPort">
+        <wsdl:operation name="getTaxaCambio">
+            <wsdl:input message="tns:getTaxaCambioRequest" name="getTaxaCambioRequest"> </wsdl:input>
+            <wsdl:output message="tns:getTaxaCambioResponse" name="getTaxaCambioResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CotacoesCambioPortSoap11" type="tns:CotacoesCambioPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTaxaCambio">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getTaxaCambioRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTaxaCambioResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CotacoesCambioPortService">
+        <wsdl:port binding="tns:CotacoesCambioPortSoap11" name="CotacoesCambioPortSoap11">
+            <soap:address location="http://localhost:8089/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

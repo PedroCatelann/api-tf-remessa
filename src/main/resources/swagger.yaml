@@ -1,0 +1,48 @@
+openapi: 3.0.1
+
+info:
+  title: API Remessas
+  description: API para simular e criar remessas
+  version: 0.0.1
+  contact:
+    name: "Autbank"
+    url: "http://www.autbank.com.br/"
+    email: "contato@autbank.com.br"
+
+servers:
+  - url: /
+
+paths:
+  /remessas/simulacao:
+    get:
+      summary: Simular remessas
+      description: Simular remessas
+      operationId: simularRemessas
+      parameters:
+        - in: query
+          name: valor
+          schema:
+            type: number
+            example: 10.2
+      responses:
+        200:
+          description: Remessa simulada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulacaoRemessaResponse'
+
+components:
+  schemas:
+    SimulacaoRemessaResponse:
+      type: object
+      properties:
+        valor:
+          type: number
+          example: 10.2
+        valorEnvio:
+          type: number
+          example: 10.2
+        taxaCambio:
+          type: number
+          example: 10.2
