@@ -38,6 +38,18 @@
             <groupId>arch.micronaut</groupId>
             <artifactId>workflow2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>arch.micronaut</groupId>
+            <artifactId>mssql-21</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>arch.micronaut</groupId>
+            <artifactId>jdbc-template</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>arch.micronaut</groupId>
+            <artifactId>cache-aop</artifactId>
+        </dependency>
 
     </dependencies>
 

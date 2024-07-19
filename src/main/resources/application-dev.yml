@@ -1,1 +1,4 @@
-
+ds.default:
+  url: "jdbc:sqlserver://CATELAN\\SQLEXPRESS;databaseName=TF_REMESSA;sendStringParametersAsUnicode=false;encrypt=false;"
+  user: "sa"
+  password: "1234"

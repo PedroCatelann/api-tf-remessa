@@ -32,6 +32,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/SimulacaoRemessaResponse'
 
+  /remessas:
+    post:
+      summary: Criar nova remessa
+      description: Criar nova remessa
+      operationId: criarRemessas
+      parameters:
+        - in: query
+          name: valor
+          schema:
+            type: number
+            example: 10.2
+      responses:
+        200:
+          description: Remessa criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriarRemessaResponse'
+
+
+
 components:
   schemas:
     SimulacaoRemessaResponse:
@@ -46,3 +67,33 @@ components:
         taxaCambio:
           type: number
           example: 10.2
+
+    CriarRemessaResponse:
+      type: object
+      properties:
+        dadosRemessa:
+          $ref: '#/components/schemas/DadosRemessa'
+        dadosPagamento:
+          $ref: '#/components/schemas/DadosPagamento'
+
+    DadosRemessa:
+      type: object
+      properties:
+        idRemessa:
+          type: integer
+        taxaCambio:
+          type: number
+        valorPago:
+          type: number
+        valorEnvio:
+          type: number
+
+    DadosPagamento:
+      type: object
+      properties:
+        nomeBanco:
+          type: string
+        nroContaBanco:
+          type: string
+        valor:
+          type: number

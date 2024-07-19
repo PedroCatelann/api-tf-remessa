@@ -246,6 +246,110 @@
     
 </table>
                 
+                    <table style="margin-bottom: 2.0rem;">
+    <tbody>
+    <tr>
+        <td colspan="4" class="bold">
+            Serviço
+        </td>
+        <td colspan="5" class="highlight">
+            criarRemessas
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="bold">
+            Endpoint
+        </td>
+        <td colspan="5">
+            /remessas POST
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="bold">
+            Escopos de Segurança
+        </td>
+        <td colspan="5">
+            
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="bold">
+            Descrição
+        </td>
+        <td colspan="5">
+            Criar nova remessa
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="9" class="bold">
+            Parâmetros de Entrada
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="bold">
+            Tipo
+        </td>
+        <td colspan="3" class="bold">
+            Nome do Campo
+        </td>
+        <td colspan="4" class="bold">
+            Descrição
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="2">
+            number
+        </td>
+        <td colspan="3">
+            valor
+        </td>
+        <td colspan="4">
+            
+        </td>
+    </tr>
+    
+    
+    
+    <tr>
+        <td colspan="9" class="bold">
+            Parâmetros de Saída
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="bold">
+            Tipo
+        </td>
+        <td colspan="3" class="bold">
+            Media Type
+        </td>
+        <td colspan="4" class="bold">
+            Descrição
+        </td>
+    </tr>
+    
+    <tr>
+        
+        <td colspan="2">
+            <a href="#CriarRemessaResponse">CriarRemessaResponse</a>
+            
+            
+            
+            
+        </td>
+        <td colspan="3">
+            application/json
+        </td>
+        
+        <td colspan="4">
+            Remessa criada com sucesso
+        </td>
+    </tr>
+    
+    
+</table>
+                
             </div>
         </div>
         
@@ -253,6 +357,114 @@
         <div id="schemas">
             <h2>Schemas: </h2>
             <div class="content">
+                
+                    <h3 id="CriarRemessaResponse">CriarRemessaResponse </h3>
+<table style="margin-bottom: 2.0rem;">
+    <tbody>
+        <tr>
+            <td colspan="2" class="bold">
+                Tipo
+            </td>
+            <td colspan="3" class="bold">
+                Nome
+            </td>
+            <td colspan="4" class="bold">
+                Descrição
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                DadosRemessa
+            </td>
+            <td colspan="3">
+                dadosRemessa
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                DadosPagamento
+            </td>
+            <td colspan="3">
+                dadosPagamento
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+                
+                    <h3 id="DadosRemessa">DadosRemessa </h3>
+<table style="margin-bottom: 2.0rem;">
+    <tbody>
+        <tr>
+            <td colspan="2" class="bold">
+                Tipo
+            </td>
+            <td colspan="3" class="bold">
+                Nome
+            </td>
+            <td colspan="4" class="bold">
+                Descrição
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                integer
+            </td>
+            <td colspan="3">
+                idRemessa
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                number
+            </td>
+            <td colspan="3">
+                taxaCambio
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                number
+            </td>
+            <td colspan="3">
+                valorPago
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                number
+            </td>
+            <td colspan="3">
+                valorEnvio
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
                 
                     <h3 id="SimulacaoRemessaResponse">SimulacaoRemessaResponse </h3>
 <table style="margin-bottom: 2.0rem;">
@@ -299,6 +511,60 @@
             </td>
             <td colspan="3">
                 taxaCambio
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+                
+                    <h3 id="DadosPagamento">DadosPagamento </h3>
+<table style="margin-bottom: 2.0rem;">
+    <tbody>
+        <tr>
+            <td colspan="2" class="bold">
+                Tipo
+            </td>
+            <td colspan="3" class="bold">
+                Nome
+            </td>
+            <td colspan="4" class="bold">
+                Descrição
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                string
+            </td>
+            <td colspan="3">
+                nomeBanco
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                string
+            </td>
+            <td colspan="3">
+                nroContaBanco
+            </td>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                number
+            </td>
+            <td colspan="3">
+                valor
             </td>
             <td colspan="4">
                 

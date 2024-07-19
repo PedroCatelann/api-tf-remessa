@@ -1,12 +1,11 @@
 package br.com.autbank.workflow.items;
 
 import arch.pattern.workflow2.flow.FlowItem;
+import br.com.autbank.RemessaConstants;
+import br.com.autbank.utilities.SimulacaoCotacaoUtility;
 import br.com.autbank.workflow.contexts.CotacaoContext;
 import core.autogen.models.SimulacaoRemessaResponse;
 import cotacao.client.CotacoesCambioPort;
-import cotacao.client.GetTaxaCambioRequest;
-import cotacao.client.GetTaxaCambioResponse;
-import cotacao.client.Moedas;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,22 +19,26 @@ public class SimulaCotacaoFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
 
     private final CotacoesCambioPort cambioPort;
 
+    private final SimulacaoCotacaoUtility simulacaoCotacaoUtility;
+
+
     @Override
     protected SimulacaoRemessaResponse doExecute(BigDecimal valor, CotacaoContext cotacaoContext) throws Exception {
-        var modelRequest = new GetTaxaCambioRequest();
-        modelRequest.setMoeda(Moedas.USDBRL);
+//        var modelRequest = new GetTaxaCambioRequest();
+//        modelRequest.setMoeda(Moedas.USDBRL);
+//
+//        var modelResponse = new GetTaxaCambioResponse();
+//        modelResponse.setTaxaCambio(modelRequest.getMoeda().value());
 
-        var modelResponse = new GetTaxaCambioResponse();
-        modelResponse.setTaxaCambio(modelRequest.getMoeda().value());
-
-        var serverResponse = cambioPort.getTaxaCambio(modelRequest);
-        var taxaCambio = new BigDecimal(serverResponse.getTaxaCambio().replace(",", "."));
-
+        var serverResponse = simulacaoCotacaoUtility.retornaTaxaCambio(cambioPort);
+        var taxaCambio = new BigDecimal(serverResponse);
+        cotacaoContext.setTaxaCambio(taxaCambio);
+        cotacaoContext.setValorDolar(valor.multiply(taxaCambio));
         SimulacaoRemessaResponse simulacaoRemessaResponse = new SimulacaoRemessaResponse();
         simulacaoRemessaResponse.setTaxaCambio(taxaCambio);
         simulacaoRemessaResponse.setValor(valor);
         simulacaoRemessaResponse.setValorEnvio(valor.multiply(taxaCambio));
-
+        RemessaConstants remessaConstants = new RemessaConstants();
         return simulacaoRemessaResponse;
 
     }
