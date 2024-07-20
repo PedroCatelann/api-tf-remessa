@@ -32,6 +32,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/SimulacaoRemessaResponse'
 
+  /remessas/{idRemessa}:
+    get:
+      summary: Devolver uma remessa específica
+      description: Devolver uma remessa específica
+      operationId: getRemessa
+      parameters:
+        - in: path
+          name: idRemessa
+          required: true
+          schema:
+            type: integer
+            example: 8
+      responses:
+        200:
+          description: Remessa obtida com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevolveRemessaResponse'
+
   /remessas:
     post:
       summary: Criar nova remessa
@@ -55,6 +75,12 @@ paths:
 
 components:
   schemas:
+    DevolveRemessaResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "CRIADA"
     SimulacaoRemessaResponse:
       type: object
       properties:

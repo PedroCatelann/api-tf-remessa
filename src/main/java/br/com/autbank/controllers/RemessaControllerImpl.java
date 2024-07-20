@@ -5,6 +5,7 @@ import arch.pattern.workflow2.flow.FlowProcessor;
 import br.com.autbank.workflow.contexts.CotacaoContext;
 import core.autogen.controllers.RemessasController;
 import core.autogen.models.CriarRemessaResponse;
+import core.autogen.models.DevolveRemessaResponse;
 import core.autogen.models.SimulacaoRemessaResponse;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ public class RemessaControllerImpl implements RemessasController {
 
     private final FlowProcessor<BigDecimal, CotacaoContext, SimulacaoRemessaResponse> remessaResponseFlowProcessor;
     private final FlowProcessor<BigDecimal, CotacaoContext, CriarRemessaResponse> criarRemessaResponseFlowProcessor;
+    private final FlowProcessor<Integer, CotacaoContext, DevolveRemessaResponse> devolveRemessaResponseFlowProcessor;
+
 
     @Override
     public HttpResponse<CriarRemessaResponse> criarRemessas(CriarRemessasRequest request) throws Exception {
@@ -27,6 +30,13 @@ public class RemessaControllerImpl implements RemessasController {
                 .valor(request.getValor())
                 .build();
         return HttpResponse.ok(criarRemessaResponseFlowProcessor.execute(request.getValor(), context));
+    }
+
+    @Override
+    public HttpResponse<DevolveRemessaResponse> getRemessa(GetRemessaRequest request) throws Exception {
+        var context = CotacaoContext.builder().build();
+
+        return HttpResponse.ok(devolveRemessaResponseFlowProcessor.execute(request.getIdRemessa(), context));
     }
 
     @Override
