@@ -24,7 +24,7 @@ public class InsereRemessaFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
     protected CriarRemessaResponse doExecute(BigDecimal valor, CotacaoContext cotacaoContext) throws Exception {
         var serverResponse = simulacaoCotacaoUtility.retornaTaxaCambio(cambioPort);
         var taxaCambio = new BigDecimal(serverResponse);
-        var id = repository.registrarRemessa(valor, valor.multiply(taxaCambio), taxaCambio);
+        var id = repository.registrarRemessa(valor.multiply(taxaCambio), valor, taxaCambio);
 
         log.info("ID DA REMESSA REGISTRADA {}", id);
 
