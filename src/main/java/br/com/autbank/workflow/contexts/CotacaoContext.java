@@ -13,4 +13,7 @@ public class CotacaoContext {
     BigDecimal valor;
     BigDecimal taxaCambio;
     BigDecimal valorDolar;
+    Integer idRemessa;
+    String status;
+    String status_envio;
 }

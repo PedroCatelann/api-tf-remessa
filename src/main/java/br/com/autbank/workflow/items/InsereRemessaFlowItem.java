@@ -1,6 +1,7 @@
 package br.com.autbank.workflow.items;
 
 import arch.pattern.workflow2.flow.FlowItem;
+import br.com.autbank.RemessaConstants;
 import br.com.autbank.repositories.RemessaRepository;
 import br.com.autbank.utilities.SimulacaoCotacaoUtility;
 import br.com.autbank.workflow.contexts.CotacaoContext;
@@ -24,8 +25,9 @@ public class InsereRemessaFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
     protected CriarRemessaResponse doExecute(BigDecimal valor, CotacaoContext cotacaoContext) throws Exception {
         var serverResponse = simulacaoCotacaoUtility.retornaTaxaCambio(cambioPort);
         var taxaCambio = new BigDecimal(serverResponse);
+        cotacaoContext.setStatus_envio(RemessaConstants.STATUS_ENVIO);
         var id = repository.registrarRemessa(valor.multiply(taxaCambio), valor, taxaCambio);
-
+        cotacaoContext.setIdRemessa(id);
         log.info("ID DA REMESSA REGISTRADA {}", id);
 
         CriarRemessaResponse criarRemessaResponse = new CriarRemessaResponse();

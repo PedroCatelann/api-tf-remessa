@@ -1,7 +1,6 @@
 package br.com.autbank.workflow.items;
 
 import arch.pattern.workflow2.flow.FlowItem;
-import br.com.autbank.RemessaConstants;
 import br.com.autbank.utilities.SimulacaoCotacaoUtility;
 import br.com.autbank.workflow.contexts.CotacaoContext;
 import core.autogen.models.SimulacaoRemessaResponse;
@@ -38,7 +37,7 @@ public class SimulaCotacaoFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
         simulacaoRemessaResponse.setTaxaCambio(taxaCambio);
         simulacaoRemessaResponse.setValor(valor);
         simulacaoRemessaResponse.setValorEnvio(valor.multiply(taxaCambio));
-        RemessaConstants remessaConstants = new RemessaConstants();
+
         return simulacaoRemessaResponse;
 
     }

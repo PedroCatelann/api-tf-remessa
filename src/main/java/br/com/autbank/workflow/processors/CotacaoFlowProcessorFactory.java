@@ -5,6 +5,7 @@ import arch.context.annotation.Factory;
 import arch.pattern.workflow2.flow.FlowBuilder;
 import arch.pattern.workflow2.flow.FlowProcessor;
 import br.com.autbank.workflow.contexts.CotacaoContext;
+import br.com.autbank.workflow.items.BancoAPIInsereEnvioExteriorFlowItem;
 import br.com.autbank.workflow.items.DevolveStatusRemessaFlowItem;
 import br.com.autbank.workflow.items.InsereRemessaFlowItem;
 import br.com.autbank.workflow.items.SimulaCotacaoFlowItem;
@@ -23,6 +24,7 @@ public class CotacaoFlowProcessorFactory {
     private final SimulaCotacaoFlowItem simulaCotacaoFlowItem;
     private final InsereRemessaFlowItem insereRemessaFlowItem;
     private final DevolveStatusRemessaFlowItem devolveStatusRemessaFlowItem;
+    private final BancoAPIInsereEnvioExteriorFlowItem bancoAPIInsereEnvioExteriorFlowItem;
 
     @Bean
     @Singleton
@@ -39,6 +41,7 @@ public class CotacaoFlowProcessorFactory {
 
         return new FlowBuilder<CotacaoContext>()
                 .step(insereRemessaFlowItem)
+                .step(bancoAPIInsereEnvioExteriorFlowItem)
                 .build();
     }
 

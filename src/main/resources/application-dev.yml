@@ -1,4 +1,6 @@
 ds.default:
   url: "jdbc:sqlserver://CATELAN\\SQLEXPRESS;databaseName=TF_REMESSA;sendStringParametersAsUnicode=false;encrypt=false;"
-  user: "sa"
-  password: "1234"
+arch:
+  oauth2.default:
+    server: http://authorization.autbank.net/oauth/token
+    scopes: TF_001_ENVIOSEXTERIOR:POST

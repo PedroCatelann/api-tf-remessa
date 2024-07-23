@@ -1,2 +1,8 @@
 arch:
   app.name: api-tf-remessa
+
+micronaut:
+  server:
+    port: 8081
+management:
+  port: "9091"

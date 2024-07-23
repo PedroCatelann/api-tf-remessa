@@ -50,6 +50,11 @@
             <groupId>arch.micronaut</groupId>
             <artifactId>cache-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>arch.micronaut</groupId>
+            <artifactId>secret-provider-vault</artifactId>
+        </dependency>
+
 
     </dependencies>
 
