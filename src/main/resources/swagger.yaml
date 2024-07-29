@@ -81,6 +81,10 @@ components:
         status:
           type: string
           example: "CRIADA"
+        cotacao:
+          type: number
+          example: 5.20
+
     SimulacaoRemessaResponse:
       type: object
       properties:

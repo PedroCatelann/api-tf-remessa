@@ -60,6 +60,7 @@ public class RemessaRepository {
                     public DevolveRemessaResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return DevolveRemessaResponse.builder()
                                 .status(rs.getString("STATUS_REMESSA"))
+                                .cotacao(rs.getBigDecimal("COTACAO_DOLAR"))
                                 .build();
                     }
                 }

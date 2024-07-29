@@ -38,8 +38,8 @@ public class InsereRemessaFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
         dadosRemessa.setValorPago(valor);
 
         DadosPagamento dadosPagamento = new DadosPagamento();
-        dadosPagamento.setNomeBanco("INTER");
-        dadosPagamento.setNroContaBanco("1234");
+        dadosPagamento.setNomeBanco("PEDRO CATELAN PLATAF");
+        dadosPagamento.setNroContaBanco("22266");
         dadosPagamento.setValor(valor);
 
         criarRemessaResponse.setDadosRemessa(dadosRemessa);
