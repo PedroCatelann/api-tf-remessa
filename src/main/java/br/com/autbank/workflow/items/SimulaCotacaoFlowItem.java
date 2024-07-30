@@ -10,7 +10,6 @@ import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
 @Named
@@ -37,8 +36,8 @@ public class SimulaCotacaoFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
             cotacaoContext.setValorDolar(valor.multiply(taxaCambio));
             SimulacaoRemessaResponse simulacaoRemessaResponse = new SimulacaoRemessaResponse();
             simulacaoRemessaResponse.setTaxaCambio(taxaCambio);
-            simulacaoRemessaResponse.setValor(valor);
-            simulacaoRemessaResponse.setValorEnvio(valor.multiply(taxaCambio));
+            simulacaoRemessaResponse.setValor(valor.multiply(taxaCambio));
+            simulacaoRemessaResponse.setValorEnvio(valor);
 
             return simulacaoRemessaResponse;
         } catch (Exception e) {

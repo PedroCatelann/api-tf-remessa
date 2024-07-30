@@ -1,40 +1,67 @@
 app:
   nome: api-tf-remessa
-  descricao: Aqui você descreve tudo sobre a sua aplicação
+  descricao: Aplicação para simular e criar remessas
   siglaSistema: tf
   namespace: autbank-tf
   integracoes:
     infraestrutura:
+      - sqlserver
+      - oauth2
+      - vault
     sistemas:
-      - nomeAplicacao: sistema-integracao-um
-        sigla: S1
-        protocolos:
-          - Kafka
-      - nomeAplicacao: sistema-integracao-dois
-        sigla: S2
-        opcional: true # opcional
+      - nomeAplicacao: api-tf-banco
+        sigla: tf
         protocolos:
           - REST
+      - nomeAplicacao: servidor-cotacoes-de-cambio
+        sigla: tf
+        protocolos:
           - SOAP
+  bancodados:
+    bancos:
+      - nome: TF_REMESSAS
+  cacheLocal:
+    gerarVariaveis: false
+  vault:
+    basePath: secret/autbank/sistema/tf/
+    grupos:
+      - grupo: sqlserver
+        path: secret/autbank/sistema/tf/sqlserver
+        politica: read
   preReqsGlobais:
     condicoesBanco:
-      - 'É necessário ter a tabela <code>TABELA_UM</code> criada e populada.'
-      - 'É necessário ter a tabela <code>TABELA_DOIS</code> criada.'
+      - 'É necessário ter a tabela <code>REMESSAS</code> criada'
   preReqsServicos:
-    - endpoint: '/endpoint-um GET'
+    - endpoint: '/remessas/simulacao GET'
       detalhes:
         variaveis:
-          - VARIAVEL_DO_GET
-          - VARIAVEL_CONDICAO_DO_GET
-        tabelas:
-          - Para utilizar esse endpoint, é necessário ter a tabela <code>TABELA_DO_GET</code> criada e populada no banco.
-          - Aqui você pode especificar tabelas que são necessárias para subir a API.
+          - valor
         sistemas:
-          - nomeSistema: 'SISTEMA_B'
+          - nomeSistema: 'servidor-cotacoes-de-cambio'
             servicos:
-              - 'servicoGetB: Serviço que traz os valores necessários do SISTEMA_B para esta API.'
-              - 'nomeDoServiço: Descrição do serviço'
+              - 'servidor-cotacoes-de-cambio: Serviço que traz os valores da cotação para esta API'
+
+    - endpoint: '/remessas POST'
+      detalhes:
+        variaveis:
+          - valor
+        tabelas:
+          - 'Para utilizar esse endpoint, é necessário ter a tabela REMESSAS criada'
+
+    - endpoint: '/remessas/{idRemessa} GET'
+      detalhes:
+        variaveis:
+          - idRemessa
+        tabelas:
+          - 'Para utilizar esse endpoint, é necessário ter a tabela REMESSAS criada'
+        sistemas:
+          - nomeSistema: 'servidor-cotacoes-de-cambio'
+            servicos:
+              - 'servidor-cotacoes-de-cambio: Serviço que traz os valores da cotação para esta API'
+          - nomeSistema: 'api-tf-banco'
+            servicos:
+              - 'serviço que cadastra novos registros para serem enviador para o exterior'
             escopos:
-              - 'S2_001_EXEMPLO_ESCOPO:POST'
-            condicoes:
-              - 'Aqui você pode especificar algumas condições para que o endpoint funcione, por exemplo, ter um serviço de envio de SMS funcionando.'
+              - 'TF_001_ENVIOSEXTERIOR:POST'
+
+

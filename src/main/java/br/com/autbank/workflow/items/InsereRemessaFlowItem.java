@@ -34,8 +34,8 @@ public class InsereRemessaFlowItem extends FlowItem<BigDecimal, CotacaoContext, 
         DadosRemessa dadosRemessa = new DadosRemessa();
         dadosRemessa.setIdRemessa(id);
         dadosRemessa.setTaxaCambio(taxaCambio);
-        dadosRemessa.setValorEnvio(valor.multiply(taxaCambio));
-        dadosRemessa.setValorPago(valor);
+        dadosRemessa.setValorEnvio(valor);
+        dadosRemessa.setValorPago(valor.multiply(taxaCambio));
 
         DadosPagamento dadosPagamento = new DadosPagamento();
         dadosPagamento.setNomeBanco("PEDRO CATELAN PLATAF");
